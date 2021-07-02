@@ -6,19 +6,27 @@ import Login from './components/login';
 import Employee from './components/employee';
 
 class App extends Component{
-
+    // Authentication State
     state = {
         isAuthenticated:false,
         isAuthenticating: true
     }
     
+    /**
+     * Tries to authenticate the user
+     */
     componentDidMount = () =>{
+        console.log(this.props)
         this.setState = {
             isAuthenticated: true,
             isAuthenticating: false
         };
     }
 
+    /**
+     * Create routes depending on the path
+     * @returns 
+     */
     render(){
         return (
             <BrowserRouter>
