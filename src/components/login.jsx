@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toPageHandler } from './helper';
 
 class Login extends Component {
     constructor(props){
@@ -6,7 +7,7 @@ class Login extends Component {
         this.state = {
                         username: '',
                         password: '',
-                    }
+        }
     }
 
     changeHandler = (event) => {
@@ -30,6 +31,7 @@ class Login extends Component {
     render(){
         return (
             <div className = 'login'>
+                <button name='toHome' onClick={toPageHandler}>Home</button>
                 <h1>Login Page</h1>
                 <form onSubmit={this.submitHandler}>
                     <label>Username:</label><br/>
