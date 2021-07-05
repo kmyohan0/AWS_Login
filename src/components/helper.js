@@ -1,7 +1,6 @@
 import React from 'react';
-//import { Route } from 'react-router-dom'
 import Login from './login';
-//import Employee from './employee';
+import { Pages } from './enum';
 
 /**
  * Helper function that redirects the page based on the event
@@ -11,19 +10,19 @@ export const toPageHandler = (event) => {
     let page = '';
 
     switch(event.target.name){
-        case 'toHome':
+        case Pages.HOME:
             page = '/'
             break;
-        case 'toLogin':
+        case Pages.LOGIN:
             page = '/login'
             break;
-        case 'toSignUp':
+        case Pages.SIGNUP:
             page = '/signup'
             break;
-        case 'toConfirmSignUp':
+        case Pages.CONFIRM_SIGNUP:
             page = '/confirmsignup'
             break;
-        case 'toSignOut':
+        case Pages.SIGNOUT:
             page = '/signout'
             break;
         default:

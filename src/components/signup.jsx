@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { toPageHandler } from './helper';
+import { Pages } from './enum';
 
 class SignUp extends Component {
     constructor(props){
@@ -51,7 +52,7 @@ class SignUp extends Component {
     render(){
         return (
             <div className = 'signup'>
-                <button name='toHome' onClick={toPageHandler}>Home</button>
+                <button name={Pages.HOME} onClick={toPageHandler}>Home</button>
                 <h1>Sign Up Page</h1>
                 <form onSubmit={this.submitHandler}>
                     <label>Email:</label><br/>

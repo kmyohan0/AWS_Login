@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { toPageHandler } from './helper';
+import { Pages } from './enum';
 
 class SignOut extends Component {
     submitHandler = async (event) =>{
@@ -18,7 +19,7 @@ class SignOut extends Component {
     render(){
         return (
             <div className = 'signout'>
-                <button name='toHome' onClick={toPageHandler}>Home</button>
+                <button name={Pages.HOME} onClick={toPageHandler}>Home</button>
                 <h1>Sign Out Page</h1>
                 <button onClick={this.submitHandler}>Sign Out</button>
             </div>     
