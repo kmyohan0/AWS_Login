@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { toPageHandler } from './helper';
 
-class Login extends Component {
+class ConfirmSignUp extends Component {
     constructor(props){
         super(props);
         this.state = {
-                        username: '',
-                        password: '',
+            username: '',
+            code: ''
         }
     }
 
@@ -16,37 +16,43 @@ class Login extends Component {
             case 'username':
                 this.setState({username: event.target.value});
                 break;
-            case 'password':
-                this.setState({password: event.target.value});
+            case 'code':
+                this.setState({code: event.target.value});
                 break;
             default:
-                this.setState({username: '', password: ''});
+                this.setState({username: '', code: ''});
         }
+        console.log(event.target.value)
     }
 
     submitHandler = async (event) =>{
+        const {username, code} = this.state;
         try {
-            const user = await Auth.signIn(this.state.username, this.state.password);
-            console.log(user)
-        }
+            const { user } = await Auth.confirmSignUp(
+                username,
+                code
+            );
+            console.log(user);
+        }  
         catch (error) {
-            console.log('error signing in', error);
+            console.log('error confirming signup', error);
         }
+
         event.preventDefault();
         alert('stop')
     }
 
     render(){
         return (
-            <div className = 'login'>
+            <div className = 'signup'>
                 <button name='toHome' onClick={toPageHandler}>Home</button>
-                <h1>Login Page</h1>
+                <h1>Confirm Sign Up Page</h1>
                 <form onSubmit={this.submitHandler}>
                     <label>Username:</label><br/>
                     <input type='text' name='username' onChange={this.changeHandler}></input><br/><br/>
 
-                    <label>Password:</label><br/>
-                    <input type='password' name='password' onChange={this.changeHandler}></input><br/><br/>
+                    <label>Code:</label><br/>
+                    <input type='text' name='code' onChange={this.changeHandler}></input><br/><br/>
 
                     <input type='submit'></input>
                 </form>
@@ -55,4 +61,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default ConfirmSignUp;

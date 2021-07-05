@@ -4,6 +4,10 @@ import { PrivateRoute } from './components/helper';
 import Home from './components/home';
 import Login from './components/login';
 import Employee from './components/employee';
+import SignUp from './components/signup';
+import ConfirmSignUp from './components/confirmsignup';
+import SignOut from './components/signout';
+import { Auth } from 'aws-amplify';
 
 class App extends Component{
     // Authentication State
@@ -16,7 +20,7 @@ class App extends Component{
      * Tries to authenticate the user
      */
     componentDidMount = () =>{
-        console.log(this.props)
+        console.log(Auth.currentSession());
         this.setState = {
             isAuthenticated: true,
             isAuthenticating: false
@@ -33,6 +37,9 @@ class App extends Component{
                 <Switch>
                     <Route exact path='/'> <Home /> </Route>
                     <Route path='/login'> <Login /> </Route>
+                    <Route path='/signup'><SignUp/></Route>
+                    <Route path='/confirmsignup'><ConfirmSignUp /></Route>
+                    <Route path= '/signout'><SignOut /></Route>
                     <PrivateRoute path ='/employee' component={Employee} isAuthenticated={this.state.isAuthenticated} isAuthenticating={this.state.isAuthenticating} />
                 </Switch>
             </BrowserRouter>

@@ -17,6 +17,15 @@ export const toPageHandler = (event) => {
         case 'toLogin':
             page = '/login'
             break;
+        case 'toSignUp':
+            page = '/signup'
+            break;
+        case 'toConfirmSignUp':
+            page = '/confirmsignup'
+            break;
+        case 'toSignOut':
+            page = '/signout'
+            break;
         default:
             page = '/'
     }

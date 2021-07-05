@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { toPageHandler } from './helper';
 
-class Login extends Component {
+class SignUp extends Component {
     constructor(props){
         super(props);
         this.state = {
-                        username: '',
-                        password: '',
+            username: '',
+            password: '',
+            email: ''
         }
     }
 
     changeHandler = (event) => {
         switch(event.target.name){
+            case 'email':
+                this.setState({email: event.target.value});
+                break;
             case 'username':
                 this.setState({username: event.target.value});
                 break;
@@ -25,23 +29,34 @@ class Login extends Component {
     }
 
     submitHandler = async (event) =>{
+        const {username, password, email} = this.state;
         try {
-            const user = await Auth.signIn(this.state.username, this.state.password);
-            console.log(user)
-        }
+            const { user } = await Auth.signUp({
+                username,
+                password,
+                attributes: {
+                    email: email
+                }
+            });
+            console.log(user);
+        }  
         catch (error) {
-            console.log('error signing in', error);
+            console.log('error signing up', error);
         }
+
         event.preventDefault();
         alert('stop')
     }
 
     render(){
         return (
-            <div className = 'login'>
+            <div className = 'signup'>
                 <button name='toHome' onClick={toPageHandler}>Home</button>
-                <h1>Login Page</h1>
+                <h1>Sign Up Page</h1>
                 <form onSubmit={this.submitHandler}>
+                    <label>Email:</label><br/>
+                    <input type='text' name='email' onChange={this.changeHandler}></input><br/><br/>
+
                     <label>Username:</label><br/>
                     <input type='text' name='username' onChange={this.changeHandler}></input><br/><br/>
 
@@ -55,4 +70,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default SignUp;
