@@ -42,11 +42,11 @@ class ConfirmSignUp extends Component {
         const {username, code} = this.state;
 
         try {
-            const { user } = await Auth.confirmSignUp(
+            await Auth.confirmSignUp(
                 username,
                 code
             );
-            console.log(user);
+            console.log("confirmed!")
         }  
         catch (error) {
             console.log('error confirming signup', error);
