@@ -5,6 +5,10 @@ import { Pages } from './enum';
 class Home extends Component {
     state = {};
 
+    /**
+     * Renders the Home page
+     * @returns Home page
+     */
     render(){
         return (
             <div className='home'>  
@@ -12,7 +16,6 @@ class Home extends Component {
                 <button name={Pages.LOGIN} onClick={toPageHandler}>Login</button>    
                 <button name={Pages.SIGNUP} onClick={toPageHandler}>Sign Up</button>    
                 <button name={Pages.CONFIRM_SIGNUP} onClick={toPageHandler}>Confirm Sign Up</button>    
-                <button name={Pages.SIGNOUT} onClick={toPageHandler}>Sign Out</button>   
             </div>
         );
     }

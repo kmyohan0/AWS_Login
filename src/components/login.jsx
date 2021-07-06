@@ -4,6 +4,10 @@ import { toPageHandler } from './helper';
 import { Pages } from './enum';
 
 class Login extends Component {
+    /**
+     * Constructs the Login class
+     * @param {*} props Properties
+     */
     constructor(props){
         super(props);
         this.state = {
@@ -12,6 +16,10 @@ class Login extends Component {
         }
     }
 
+    /**
+     * Updates the state attributes with respect to the input being modified 
+     * @param {} event The input event
+     */
     changeHandler = (event) => {
         switch(event.target.name){
             case 'username':
@@ -25,6 +33,10 @@ class Login extends Component {
         }
     }
 
+    /**
+     * Checks the credentials and if valid, logs the user in
+     * @param {*} event Submit event
+     */
     submitHandler = async (event) =>{
         event.preventDefault();
         const {username, password} = this.state;
@@ -32,6 +44,7 @@ class Login extends Component {
         try {
             const user = await Auth.signIn(username, password);
             console.log(user)
+            toPageHandler(event)
         }
         catch (error) {
             console.log('error signing in', error);
@@ -40,12 +53,16 @@ class Login extends Component {
         alert('stop')
     }
 
+    /**
+     * Renders the login page
+     * @returns Login page
+     */
     render(){
         return (
             <div className = 'login'>
                 <button name={Pages.HOME} onClick={toPageHandler}>Home</button>
                 <h1>Login Page</h1>
-                <form onSubmit={this.submitHandler}>
+                <form name={Pages.HIDDEN} onSubmit={this.submitHandler}>
                     <label>Username:</label><br/>
                     <input type='text' name='username' onChange={this.changeHandler}></input><br/><br/>
 

@@ -4,6 +4,10 @@ import { toPageHandler } from './helper';
 import { Pages } from './enum';
 
 class ConfirmSignUp extends Component {
+    /**
+     * Constructs the ConfirmSignUp class
+     * @param {*} props Properties
+     */
     constructor(props){
         super(props);
         this.state = {
@@ -12,6 +16,10 @@ class ConfirmSignUp extends Component {
         }
     }
 
+    /**
+     * Updates the state attributes with respect to the input being modified 
+     * @param {} event The input event
+     */
     changeHandler = (event) => {
         switch(event.target.name){
             case 'username':
@@ -25,6 +33,10 @@ class ConfirmSignUp extends Component {
         }
     }
 
+    /**
+     * Checks the credentials and if valid, confirms the user's sign up
+     * @param {*} event Submit event
+     */
     submitHandler = async (event) =>{
         event.preventDefault();
         const {username, code} = this.state;
@@ -44,6 +56,10 @@ class ConfirmSignUp extends Component {
         alert('stop')
     }
 
+    /**
+     * Renders the confirm sign up page
+     * @returns Confirm sign up page
+     */
     render(){
         return (
             <div className = 'signup'>

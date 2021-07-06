@@ -5,39 +5,42 @@ import Home from './components/home';
 import Login from './components/login';
 import SignUp from './components/signup';
 import ConfirmSignUp from './components/confirmsignup';
-import SignOut from './components/signout';
 import { Auth } from 'aws-amplify';
 import Hidden from './components/hidden';
 
 class App extends Component{
-    // Authentication State
+    // Authentication state
     state = {
         isAuthenticated:false,
-        isAuthenticating: true
+        isAuthenticating: true,
+        user: null
     }
     
     /**
-     * Tries to authenticate the user
+     * Authenticates the current session
      */
     componentDidMount = async () =>{
         await Auth.currentSession().then((session) => {
-            console.log(session)
+            // If the promise is recieved, then authenticate the user
             this.setState({
                 isAuthenticated: true,
-                isAuthenticating: false
+                isAuthenticating: false,
+                user: session
             });
+            console.log(session)
         }).catch((error)=> {
-            console.log(error)
+            // If the promise is not recieved, then the user cannot be authenticated         
             this.setState({
-                isAuthenticating: false
+                isAuthenticating: false,
+                user: null
             })
+            console.log(error)
         });
-        
     }
 
     /**
      * Create routes depending on the path
-     * @returns 
+     * @returns The correct route to take based on the path
      */
     render(){
         return (
@@ -47,8 +50,8 @@ class App extends Component{
                     <Route path='/login'> <Login/> </Route>
                     <Route path='/signup'> <SignUp/> </Route>
                     <Route path='/confirmsignup'> <ConfirmSignUp/> </Route>
-                    <Route path= '/signout'> <SignOut/> </Route>
-                    <PrivateRoute path ='/hidden' component={Hidden} isAuthenticated={this.state.isAuthenticated} isAuthenticating={this.state.isAuthenticating} />
+                    <PrivateRoute path ='/hidden' component={Hidden} user={this.state.user}
+                        isAuthenticated={this.state.isAuthenticated} isAuthenticating={this.state.isAuthenticating} />
                 </Switch>
             </BrowserRouter>
         );

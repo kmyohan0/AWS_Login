@@ -4,6 +4,10 @@ import { toPageHandler } from './helper';
 import { Pages } from './enum';
 
 class SignUp extends Component {
+    /**
+     * Constructs the SignUp class
+     * @param {*} props Properties
+     */
     constructor(props){
         super(props);
         this.state = {
@@ -13,6 +17,10 @@ class SignUp extends Component {
         }
     }
 
+    /**
+     * Updates the state attributes with respect to the input being modified 
+     * @param {} event The input event
+     */
     changeHandler = (event) => {
         switch(event.target.name){
             case 'email':
@@ -29,6 +37,10 @@ class SignUp extends Component {
         }
     }
 
+    /**
+     * Checks the credentials and if valid, signs the user up
+     * @param {*} event Submit event
+     */
     submitHandler = async (event) =>{
         event.preventDefault();
         const {username, password, email} = this.state;
@@ -50,6 +62,10 @@ class SignUp extends Component {
         alert('stop')
     }
 
+    /**
+     * Renders the sign up page
+     * @returns Sign up page
+     */
     render(){
         return (
             <div className = 'signup'>

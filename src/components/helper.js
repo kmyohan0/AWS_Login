@@ -16,14 +16,14 @@ export const toPageHandler = (event) => {
         case Pages.LOGIN:
             page = '/login'
             break;
+        case Pages.HIDDEN:
+            page = '/hidden'
+            break;
         case Pages.SIGNUP:
             page = '/signup'
             break;
         case Pages.CONFIRM_SIGNUP:
             page = '/confirmsignup'
-            break;
-        case Pages.SIGNOUT:
-            page = '/signout'
             break;
         default:
             page = '/'
@@ -38,11 +38,9 @@ export const toPageHandler = (event) => {
  * @returns 
  */
 export const PrivateRoute = (props) => {
-    console.log(props)
-
     if(props.isAuthenticating)
         return <div>Authenticating</div>
     else if(!props.isAuthenticated)
         return <Login />;
-    return <props.component/>;
+    return <props.component user={props.user}/>;
 }
