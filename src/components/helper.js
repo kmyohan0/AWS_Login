@@ -32,6 +32,11 @@ export const toPageHandler = (event) => {
     window.location.href = page;
 }
 
+/**
+ * Used to create private routes that require authentication
+ * @param {*} props 
+ * @returns 
+ */
 export const PrivateRoute = (props) => {
     console.log(props)
 

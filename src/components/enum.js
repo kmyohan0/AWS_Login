@@ -3,5 +3,6 @@ export const Pages = {
     LOGIN: 'toLogin',
     SIGNUP: 'toSignUp',
     CONFIRM_SIGNUP: 'toConfirmSignUp',
-    SIGNOUT: 'toSignOut'
+    SIGNOUT: 'toSignOut',
+    HIDDEN: 'toHidden'
 } 

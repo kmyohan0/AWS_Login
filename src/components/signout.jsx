@@ -5,15 +5,16 @@ import { Pages } from './enum';
 
 class SignOut extends Component {
     submitHandler = async (event) =>{
+        event.preventDefault();
+        
         try {
             await Auth.signOut();
         }  
         catch (error) {
             console.log('error signing out', error);
         }
-
-        event.preventDefault();
-        alert('stop')
+        
+        toPageHandler(event)
     }
 
     render(){
@@ -21,7 +22,7 @@ class SignOut extends Component {
             <div className = 'signout'>
                 <button name={Pages.HOME} onClick={toPageHandler}>Home</button>
                 <h1>Sign Out Page</h1>
-                <button onClick={this.submitHandler}>Sign Out</button>
+                <button name={Pages.HOME} onClick={this.submitHandler}>Sign Out</button>
             </div>     
         );
     }

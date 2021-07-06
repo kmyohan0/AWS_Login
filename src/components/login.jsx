@@ -7,8 +7,8 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-                        username: '',
-                        password: '',
+            username: '',
+            password: ''
         }
     }
 
@@ -26,14 +26,17 @@ class Login extends Component {
     }
 
     submitHandler = async (event) =>{
+        event.preventDefault();
+        const {username, password} = this.state;
+        
         try {
-            const user = await Auth.signIn(this.state.username, this.state.password);
+            const user = await Auth.signIn(username, password);
             console.log(user)
         }
         catch (error) {
             console.log('error signing in', error);
         }
-        event.preventDefault();
+        
         alert('stop')
     }
 

@@ -30,7 +30,9 @@ class SignUp extends Component {
     }
 
     submitHandler = async (event) =>{
+        event.preventDefault();
         const {username, password, email} = this.state;
+        
         try {
             const { user } = await Auth.signUp({
                 username,
@@ -45,7 +47,6 @@ class SignUp extends Component {
             console.log('error signing up', error);
         }
 
-        event.preventDefault();
         alert('stop')
     }
 

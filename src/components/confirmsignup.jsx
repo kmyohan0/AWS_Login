@@ -23,11 +23,12 @@ class ConfirmSignUp extends Component {
             default:
                 this.setState({username: '', code: ''});
         }
-        console.log(event.target.value)
     }
 
     submitHandler = async (event) =>{
+        event.preventDefault();
         const {username, code} = this.state;
+
         try {
             const { user } = await Auth.confirmSignUp(
                 username,
@@ -39,7 +40,7 @@ class ConfirmSignUp extends Component {
             console.log('error confirming signup', error);
         }
 
-        event.preventDefault();
+        
         alert('stop')
     }
 
