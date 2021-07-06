@@ -53,6 +53,12 @@ class SignUp extends Component {
                     email: email
                 }
             });
+
+            toPageHandler({
+                target: {
+                  name: Pages.CONFIRM_SIGNUP
+                }  
+            });
             console.log(user);
         }  
         catch (error) {

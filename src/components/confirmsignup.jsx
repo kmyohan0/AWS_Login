@@ -46,6 +46,12 @@ class ConfirmSignUp extends Component {
                 username,
                 code
             );
+
+            toPageHandler({
+                target: {
+                  name: Pages.LOGIN
+                }  
+            });
             console.log("confirmed!")
         }  
         catch (error) {

@@ -16,6 +16,12 @@ export const toPageHandler = (event) => {
         case Pages.LOGIN:
             page = '/login'
             break;
+        case Pages.FORGOT_PASSWORD:
+            page = '/forgotpassword'
+            break;
+        case Pages.CHANGE_PASSWORD:
+            page= '/changepassword'
+            break;
         case Pages.HIDDEN:
             page = '/hidden'
             break;

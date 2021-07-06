@@ -48,6 +48,12 @@ class Login extends Component {
         }
         catch (error) {
             console.log('error signing in', error);
+            if(error.code === 'UserNotConfirmedException')
+                toPageHandler({
+                  target: {
+                    name: Pages.CONFIRM_SIGNUP
+                  }  
+                });
         }
         
         alert('stop')
@@ -70,7 +76,11 @@ class Login extends Component {
                     <input type='password' name='password' onChange={this.changeHandler}></input><br/><br/>
 
                     <input type='submit'></input>
+
+                    <a href='/forgotpassword'>Forgot Password?</a>
                 </form>
+
+                
             </div>     
         );
     }

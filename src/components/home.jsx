@@ -14,8 +14,7 @@ class Home extends Component {
             <div className='home'>  
                 <h1>Home Page</h1>
                 <button name={Pages.LOGIN} onClick={toPageHandler}>Login</button>    
-                <button name={Pages.SIGNUP} onClick={toPageHandler}>Sign Up</button>    
-                <button name={Pages.CONFIRM_SIGNUP} onClick={toPageHandler}>Confirm Sign Up</button>    
+                <button name={Pages.SIGNUP} onClick={toPageHandler}>Sign Up</button>     
             </div>
         );
     }

@@ -40,6 +40,7 @@ class Hidden extends Component {
 
         return (
             <div className='hidden'>
+                <button name={Pages.CHANGE_PASSWORD} onClick={toPageHandler}>Change Password</button>
                 <button name={Pages.HOME} onClick={this.submitHandler}>Sign Out</button>
                 <h1>Hidden Page</h1>
                 <p>Hi {username}!</p>
