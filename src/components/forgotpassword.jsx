@@ -12,7 +12,6 @@ class ForgotPassword extends Component {
         super(props);
         this.state = {
             username: '',
-            code: '',
             password: '',
             step: 0
         }
@@ -26,9 +25,6 @@ class ForgotPassword extends Component {
         switch(event.target.name){
             case 'username':
                 this.setState({username: event.target.value});
-                break;
-            case 'code':
-                this.setState({code: event.target.value});
                 break;
             case 'password':
                 this.setState({password: event.target.value});
@@ -52,7 +48,7 @@ class ForgotPassword extends Component {
                 this.setState({step: 1})
             }
             else if(this.state.step === 1){
-                await Auth.forgotPasswordSubmit(username, code, password);
+                await Auth.forgotPasswordSubmit(username, password);
                 toPageHandler({
                     target: {
                       name: Pages.LOGIN
@@ -90,9 +86,6 @@ class ForgotPassword extends Component {
                         /** This has the verification code and new password textboxes*/
                         this.state.step === 1 && (
                             <div>
-                                <label>Code:</label><br/>
-                                <input type='text' name='code' onChange={this.changeHandler}></input><br/><br/>
-
                                 <label>New Password:</label><br/>
                                 <input type='password' name='password' onChange={this.changeHandler}></input><br/><br/>
                             </div>

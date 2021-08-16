@@ -52,17 +52,14 @@ class ConfirmSignUp extends Component {
                   name: Pages.LOGIN
                 }  
             });
-            console.log("confirmed!")
+            alert("Success!")
         }  
         catch (error) {
-            console.log('error confirming signup', error);
+            console.log('error confirming signup');
         }
-
-        
-        alert('stop')
     }
 
-    /**
+    /*
      * Renders the confirm sign up page
      * @returns Confirm sign up page
      */

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { toPageHandler } from './helper';
 import { Pages } from './enum';
+import { findAllByTestId } from '@testing-library/react';
 
 class SignUp extends Component {
     /**
@@ -44,6 +45,7 @@ class SignUp extends Component {
     submitHandler = async (event) =>{
         event.preventDefault();
         const {username, password, email} = this.state;
+        var isSuccessful = true;
         
         try {
             const { user } = await Auth.signUp({
@@ -59,13 +61,16 @@ class SignUp extends Component {
                   name: Pages.CONFIRM_SIGNUP
                 }  
             });
-            console.log(user);
         }  
         catch (error) {
-            console.log('error signing up', error);
+            if (error.code === 'UsernameExistsException') {
+                alert("Username exists")
+                isSuccessful = false
+            }
         }
-
-        alert('stop')
+        if (isSuccessful) {
+            alert("Success!")
+        }
     }
 
     /**

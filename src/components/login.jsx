@@ -40,23 +40,35 @@ class Login extends Component {
     submitHandler = async (event) =>{
         event.preventDefault();
         const {username, password} = this.state;
-        
+        var isSuccessful = true;
         try {
             const user = await Auth.signIn(username, password);
             console.log(user)
             toPageHandler(event)
         }
         catch (error) {
+            isSuccessful = false;
             console.log('error signing in', error);
-            if(error.code === 'UserNotConfirmedException')
+            if(error.code === 'UserNotConfirmedException') {
+                alert("User has not verified yet");
                 toPageHandler({
                   target: {
                     name: Pages.CONFIRM_SIGNUP
                   }  
                 });
+            }
+            else if (error.code === 'NotAuthorizedException') {
+                alert("Username or Password is not correct")
+            }
         }
-        
-        alert('stop')
+        if (isSuccessful) {
+            alert("Success!")
+            toPageHandler({
+                target: {
+                    name: Pages.HIDDEN
+                }
+            });
+        }
     }
 
     /**
